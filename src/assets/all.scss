@@ -2,6 +2,9 @@
 @import "./variables";
 @import "bootstrap/scss/bootstrap";
 
+body {
+    user-select: none;
+}
 
 .py40 {
     padding-top: 40px;
