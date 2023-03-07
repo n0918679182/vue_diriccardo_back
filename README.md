@@ -1,5 +1,5 @@
 # Diriccardo (後台)
-可至 [Diriccardo 前台](https://github.com/n0918679182/vue_diriccardo)下載 db.json 配合 [GitHub pages](https://n0918679182.github.io/vue_diriccardo_back/#/) 一起做測試
+DEMO: [GitHub pages](https://n0918679182.github.io/vue_diriccardo_back/#/) 
 
 ### 此專題另有搭配前台系統：
 - [GitHub Repository](https://github.com/n0918679182/vue_diriccardo)
