@@ -10,7 +10,7 @@ export default defineStore('historyOrderStore', {
     }),
     actions: {
         getHistoryOrders() {
-            axios.get('http://localhost:3000/historyOrders').then(resp => {
+            axios.get('https://diriccardo-server.onrender.com/historyOrders').then(resp => {
                 this.allHistoryOrders = resp.data.sort((a, b) => a.time < b.time);
             }).catch(err => console.log(err.response.data.message))
         },

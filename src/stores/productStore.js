@@ -7,7 +7,7 @@ export default defineStore('productStore', {
     }),
     actions: {
         getAllProducts() {
-            axios.get('http://localhost:3000/products/').then(resp => {
+            axios.get('https://diriccardo-server.onrender.com/products/').then(resp => {
                 this.allProducts = resp.data;
             }).catch(err =>alert(err.response.data.message));
         }

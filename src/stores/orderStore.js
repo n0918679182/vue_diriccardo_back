@@ -9,7 +9,7 @@ export default defineStore('orderStore', {
     }),
     actions:{
         getAllOrders() {            
-            axios.get('http://localhost:3000/orderList/').then(resp => {
+            axios.get('https://diriccardo-server.onrender.com/orderList/').then(resp => {
                 this.allOrders = resp.data;
             }).catch(err => alert(err.response.data.message));
         },
@@ -38,12 +38,12 @@ export default defineStore('orderStore', {
             return `${t.getFullYear()} 年 ${t.getMonth() + 1} 月 ${t.getDate()} 日 ${t.getHours()} 時 ${t.getMinutes()} 分`
         },
         async orderListToHistory() {
-            await axios.delete('http://localhost:3000/orderList/' + this.orderDetailTemp.id);
+            await axios.delete('https://diriccardo-server.onrender.com/orderList/' + this.orderDetailTemp.id);
             
             // 重置id 避免新增到歷史訂單時id撞到
             this.orderDetailTemp.id = '';
 
-            await axios.post('http://localhost:3000/historyOrders', {
+            await axios.post('https://diriccardo-server.onrender.com/historyOrders', {
                 newOrders: this.orderDetailTemp.newOrders,
                 orders: this.orderDetailTemp.orders,
                 serial: this.orderDetailTemp.serial,

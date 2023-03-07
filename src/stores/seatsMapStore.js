@@ -13,7 +13,7 @@ export default defineStore('seatsMapStore', {
     }),
     actions: {
         getSeatMap() {
-            axios.get('http://localhost:3000/tableState').then(resp => {
+            axios.get('https://diriccardo-server.onrender.com/tableState').then(resp => {
                 this.seatsMap = resp.data;
             }).catch(err => alert(err.response.data.message));
         },
@@ -26,13 +26,13 @@ export default defineStore('seatsMapStore', {
                 "sitTime": new Date().toTimeString().substring(0, 5).split(':').join(' : '),
                 "using": 1
             };
-            axios.patch('http://localhost:3000/tableState/' + id, data).then(() => {
+            axios.patch('https://diriccardo-server.onrender.com/tableState/' + id, data).then(() => {
                 document.getElementById('addCloseBtn').click();
             }).catch(err=>alert(err.response.data.message));
         },
         async cleanTable() {
             // 重置DB tableState 的資訊
-            await axios.patch('http://localhost:3000/tableState/' + this.tableInfoTemp.id, {
+            await axios.patch('https://diriccardo-server.onrender.com/tableState/' + this.tableInfoTemp.id, {
                 "customerNum": 0,
                 "sitTime": "",
                 "userNum": 0,

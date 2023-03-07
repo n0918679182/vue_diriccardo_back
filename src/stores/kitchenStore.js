@@ -9,7 +9,7 @@ export default defineStore('kitchenStore', {
     }),
     actions: {
         getKitchenOrders() {
-            axios.get('http://localhost:3000/kitchenOrders').then(resp => {
+            axios.get('https://diriccardo-server.onrender.com/kitchenOrders').then(resp => {
                 this.orderLists = resp.data.sort((a, b) => {
                     return a.id > b.id;
                 });
@@ -64,7 +64,7 @@ export default defineStore('kitchenStore', {
             localStorage.setItem('kitchenDeleteTemp', JSON.stringify(deleteTemp));
 
             // 正式從DB刪除
-            axios.delete('http://localhost:3000/kitchenOrders/' + order.id).catch(err => console.log(err.response.data.message));
+            axios.delete('https://diriccardo-server.onrender.com/kitchenOrders/' + order.id).catch(err => console.log(err.response.data.message));
         },
         // 回復上一筆刪除的資料
         async undo() {
@@ -77,7 +77,7 @@ export default defineStore('kitchenStore', {
                 tableId: tempOrders[tempOrders.length - 1].tableId
             };
             // 先判斷 DB 是否已經有相同ID (可能顧客又有加點)
-            await axios.get('http://localhost:3000/kitchenOrders').then(resp => {
+            await axios.get('https://diriccardo-server.onrender.com/kitchenOrders').then(resp => {
                 let haveId = false;
                 resp.data.forEach(o => {
                     // 若已有ID 則將該ID的餐點加入至 lastestOrder
@@ -90,9 +90,9 @@ export default defineStore('kitchenStore', {
                 })
                 // 將最後一筆資料 加回 DB / 修改 DB 中相同 ID 的資料
                 if (haveId) {
-                    return axios.patch('http://localhost:3000/kitchenOrders/' + lastestOrder.id, lastestOrder).catch(err => console.log(err.response.data.message));
+                    return axios.patch('https://diriccardo-server.onrender.com/kitchenOrders/' + lastestOrder.id, lastestOrder).catch(err => console.log(err.response.data.message));
                 } else {
-                    return axios.post('http://localhost:3000/kitchenOrders', lastestOrder).catch(err => console.log(err.response.data.message));
+                    return axios.post('https://diriccardo-server.onrender.com/kitchenOrders', lastestOrder).catch(err => console.log(err.response.data.message));
                 }
             }).catch(err => console.log(err.response.data.message));
             // 刪除陣列中最後一筆資料 (被加回去的資料) 並重新暫存到 localStorage
