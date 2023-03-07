@@ -1,4 +1,5 @@
 <template>
+    <VueLoading v-model:active="isLoading"></VueLoading>
     <div class="WaitingMeal mt-5">
         <div class="row wait-meal-scroll px-10">
             <div class="d-flex align-items-end mt-2 mb-4">
@@ -29,18 +30,22 @@
 <script>
 import { mapState, mapActions } from 'pinia';
 import kitchenStore from '../stores/kitchenStore.js';
+import loadingStore from "../stores/loadingStore";
 
 export default {
     computed: {
-        ...mapState(kitchenStore, ['newOrderLists', 'noKitchenDeleteTemp'])
+        ...mapState(kitchenStore, ['newOrderLists', 'noKitchenDeleteTemp']),
+        ...mapState(loadingStore, ['isLoading'])
     },
     methods: {
         ...mapActions(kitchenStore, ['getKitchenOrders', 'haveDeleteTemp', 'lineOrder', 'deleteFromKitchen', 'undo']),
+        ...mapActions(loadingStore, ['loading'])
     },
     mounted() {
+        this.loading();
         setInterval(() => {
             this.getKitchenOrders();
-        }, 3000);
+        }, 1000);
         setInterval(() => {
             this.haveDeleteTemp();
         }, 500);

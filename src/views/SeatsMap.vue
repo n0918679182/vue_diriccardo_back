@@ -1,4 +1,5 @@
 <template>
+    <VueLoading v-model:active="isLoading"></VueLoading>
     <div class="seats mt-5 py40 pe-12">
         <div class="container w-50">
             <div class="row">
@@ -38,6 +39,7 @@
 import { mapState, mapActions } from "pinia";
 import seatsMapStore from '../stores/seatsMapStore.js';
 import orderStore from "../stores/orderStore";
+import loadingStore from "../stores/loadingStore";
 import AddModal from '../components/seatMap/AddModal.vue';
 import InfoModal from "../components/seatMap/InfoModal.vue";
 
@@ -52,17 +54,20 @@ export default {
         }
     },
     computed: {
-        ...mapState(seatsMapStore, ['seatsMap'])
+        ...mapState(seatsMapStore, ['seatsMap']),
+        ...mapState(loadingStore, ['isLoading'])
     },
     methods: {
         ...mapActions(seatsMapStore, ['getSeatMap', 'getTableInfo']),
         ...mapActions(orderStore, ['getAllOrders']),
+        ...mapActions(loadingStore, ['loading'])
     },
     mounted() {
+        this.loading();
         setInterval(() => {
             this.getSeatMap();
             this.getAllOrders();
-        }, 3000);
+        }, 1000);
     },
     components: {
         AddModal,

@@ -1,4 +1,5 @@
 <template>
+    <VueLoading v-model:active="isLoading"></VueLoading>
     <div class="historyOrders mt-5">
         <div class="d-flex justify-content-between align-items-center mt-2 mb-4 px-10">
             <h2 class="mb-0 me-4 mt-2">歷史訂單紀錄</h2>
@@ -38,18 +39,22 @@
 <script>
 import { mapActions, mapState } from 'pinia';
 import historyOrderStore from '../stores/historyOrderStore';
+import loadingStore from "../stores/loadingStore";
 import OrderDetailModal from '../components/historyOrders/OrderDetailModal.vue';
 import SortModal from '../components/historyOrders/SortModal.vue';
 
 export default {
     computed: {
-        ...mapState(historyOrderStore, ['allHistoryOrders'])
+        ...mapState(historyOrderStore, ['allHistoryOrders']),
+        ...mapState(loadingStore, ['isLoading'])
     },
     methods: {
-        ...mapActions(historyOrderStore, ['getHistoryOrders', 'timeInChinese', 'getOrder'])
+        ...mapActions(historyOrderStore, ['getHistoryOrders', 'timeInChinese', 'getOrder']),
+        ...mapActions(loadingStore, ['loading'])
     },
     mounted() {
         this.getHistoryOrders();
+        this.loading();
     },
     components: {
         OrderDetailModal,
