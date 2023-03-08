@@ -1,6 +1,8 @@
 # Diriccardo (後台)
 DEMO: [GitHub pages](https://n0918679182.github.io/vue_diriccardo_back/#/) 
 
+此作品模擬餐廳點餐 pad 建議用全螢幕來使用
+
 ### 此專題另有搭配前台系統：
 - [GitHub Repository](https://github.com/n0918679182/vue_diriccardo)
 - [GitHub pages](https://n0918679182.github.io/vue_diriccardo/#/)
