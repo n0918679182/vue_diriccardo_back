@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import axios from "axios";
 
 export default defineStore('seatsMapStore', {
-    state: ()=>({
+    state: () => ({
         seatsMap: [],
         tableInfoTemp: {     // 暫存桌位資訊
             "id": 0,
@@ -15,7 +15,7 @@ export default defineStore('seatsMapStore', {
         getSeatMap() {
             axios.get('https://diriccardo-server.onrender.com/tableState').then(resp => {
                 this.seatsMap = resp.data;
-            }).catch(err => alert(err.response.data.message));
+            }).catch(err => console.dir(err));
         },
         getTableInfo(table) {
             this.tableInfoTemp = table;
@@ -28,7 +28,7 @@ export default defineStore('seatsMapStore', {
             };
             axios.patch('https://diriccardo-server.onrender.com/tableState/' + id, data).then(() => {
                 document.getElementById('addCloseBtn').click();
-            }).catch(err=>alert(err.response.data.message));
+            }).catch(err => console.dir(err));
         },
         async cleanTable() {
             // 重置DB tableState 的資訊
@@ -40,7 +40,7 @@ export default defineStore('seatsMapStore', {
                 "orderSerial": "",
                 "staffId": "",
                 "using": 0
-            }).catch(err => alert(err.response.data.message));
+            }).catch(err => console.dir(err));
             this.tableInfoTemp = {};
         }
     }

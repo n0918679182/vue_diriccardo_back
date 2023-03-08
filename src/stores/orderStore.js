@@ -50,7 +50,7 @@ export default defineStore('orderStore', {
                 staffId: this.orderDetailTemp.staffId,
                 subtotal: this.orderDetailTemp.subtotal,
                 tableId: this.orderDetailTemp.tableId,
-                tiem: this.orderDetailTemp.time,
+                time: this.orderDetailTemp.time,
                 user: this.orderDetailTemp.user
             }).catch(err => alert(err.response.data.message));
 

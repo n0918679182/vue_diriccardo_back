@@ -14,7 +14,7 @@ export default defineStore('kitchenStore', {
                     return a.id > b.id;
                 });
                 this.newOrderLists = this.changeOrder(this.orderLists);
-            });
+            }).catch(err => console.dir(err));
         },
         // 將訂單的明細陣列轉換為有詳細資料的明細陣列
         changeOrder(array) {
@@ -64,7 +64,7 @@ export default defineStore('kitchenStore', {
             localStorage.setItem('kitchenDeleteTemp', JSON.stringify(deleteTemp));
 
             // 正式從DB刪除
-            axios.delete('https://diriccardo-server.onrender.com/kitchenOrders/' + order.id).catch(err => console.log(err.response.data.message));
+            axios.delete('https://diriccardo-server.onrender.com/kitchenOrders/' + order.id).catch(err => console.dir(err));
         },
         // 回復上一筆刪除的資料
         async undo() {
@@ -90,11 +90,11 @@ export default defineStore('kitchenStore', {
                 })
                 // 將最後一筆資料 加回 DB / 修改 DB 中相同 ID 的資料
                 if (haveId) {
-                    return axios.patch('https://diriccardo-server.onrender.com/kitchenOrders/' + lastestOrder.id, lastestOrder).catch(err => console.log(err.response.data.message));
+                    return axios.patch('https://diriccardo-server.onrender.com/kitchenOrders/' + lastestOrder.id, lastestOrder).catch(err => console.dir(err));
                 } else {
-                    return axios.post('https://diriccardo-server.onrender.com/kitchenOrders', lastestOrder).catch(err => console.log(err.response.data.message));
+                    return axios.post('https://diriccardo-server.onrender.com/kitchenOrders', lastestOrder).catch(err => console.dir(err));
                 }
-            }).catch(err => console.log(err.response.data.message));
+            }).catch(err => console.dir(err));
             // 刪除陣列中最後一筆資料 (被加回去的資料) 並重新暫存到 localStorage
             tempOrders.splice(tempOrders.length - 1, 1);
             localStorage.setItem('kitchenDeleteTemp', JSON.stringify(tempOrders));

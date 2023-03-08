@@ -2,14 +2,14 @@ import { defineStore } from "pinia";
 import axios from "axios";
 
 export default defineStore('productStore', {
-    state: ()=>({
+    state: () => ({
         allProducts: []
     }),
     actions: {
         getAllProducts() {
             axios.get('https://diriccardo-server.onrender.com/products/').then(resp => {
                 this.allProducts = resp.data;
-            }).catch(err =>alert(err.response.data.message));
+            }).catch(err => console.dir(err));
         }
     }
 })

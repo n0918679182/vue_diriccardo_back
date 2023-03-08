@@ -12,7 +12,7 @@ export default defineStore('historyOrderStore', {
         getHistoryOrders() {
             axios.get('https://diriccardo-server.onrender.com/historyOrders').then(resp => {
                 this.allHistoryOrders = resp.data.sort((a, b) => a.time < b.time);
-            }).catch(err => console.log(err.response.data.message))
+            }).catch(err => console.dir(err))
         },
         timeInChinese(time) {
             const t = new Date(time);
