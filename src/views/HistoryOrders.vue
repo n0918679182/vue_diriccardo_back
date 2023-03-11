@@ -12,7 +12,7 @@
                     data-bs-target="#sortModal">篩選</button>
             </div>
         </div>
-        <div class="history-orders-scroll px-10">
+        <div class="history-orders-scroll thinScrollbar px-10">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -66,9 +66,6 @@ export default {
 <style lang="scss" scoped>
 .history-orders-scroll {
     overflow-y: scroll;
-    // max-height: 624px;
     max-height: 79vh;
-    scrollbar-color: rgb(223, 223, 223) rgb(255, 255, 255);
-    scrollbar-width: thin;
 }
 </style>

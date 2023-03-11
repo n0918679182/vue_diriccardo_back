@@ -1,7 +1,7 @@
 <template>
     <VueLoading v-model:active="isLoading"></VueLoading>
     <div class="WaitingMeal mt-5">
-        <div class="row wait-meal-scroll px-10">
+        <div class="row wait-meal-scroll thinScrollbar px-10">
             <div class="d-flex align-items-end mt-2 mb-4">
                 <h2 class="mb-0 me-6">廚房進度</h2>
                 <button type="button" @click="undo" :disabled="noKitchenDeleteTemp"
@@ -68,10 +68,7 @@ export default {
 
 .wait-meal-scroll {
     overflow-y: scroll;
-    // max-height: 636px;
     max-height: 88vh;
-    scrollbar-color: rgb(223, 223, 223) rgb(255, 255, 255);
-    scrollbar-width: thin;
 }
 
 .delLine {

@@ -13,7 +13,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         @click="()=>orderDetailTemp.subtotal = 0"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body thinScrollbar">
                     <table class="table">
                         <thead>
                             <tr>
