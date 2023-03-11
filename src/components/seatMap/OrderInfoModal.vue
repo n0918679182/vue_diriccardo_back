@@ -42,8 +42,7 @@
                         <div class="d-flex justify-content-between align-items-end w-100 mb-1">
                             <p class="mb-0 h7">總計：</p>
                             <p class="mb-0 h5 text-danger">{{
-                                orderDetailTemp.subtotal +
-                                (orderDetailTemp.subtotal * 0.1)
+                                Math.round(orderDetailTemp.subtotal + (orderDetailTemp.subtotal * 0.1))
                             }}</p>
                         </div>
                     </div>
