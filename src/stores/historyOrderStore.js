@@ -45,7 +45,7 @@ export default defineStore('historyOrderStore', {
         sortOrder(beginDate, stopDate, refs) {
             if (beginDate != '' && stopDate != '') {
                 let BD = new Date(beginDate.split('-').join('/')).getTime();
-                let SD = new Date(stopDate.split('-').join('/')).getTime();
+                let SD = new Date(stopDate.split('-').join('/')).getTime()+24*60*60*1000;
                 if (BD > SD) {
                     alert('起始日期請勿超過結束日期')
                 } else {
